@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.0](https://github.com/myinusa/filename-suggestion-ai/compare/v1.2.0...v1.3.0) (2024-08-31)
+
+
+### Features
+
+* **args.py:** add new optional arguments for directory and filter processing ([b819649](https://github.com/myinusa/filename-suggestion-ai/commit/b819649317b2bc6569aad8b85f9872a5719c8bbc))
+* **main.py:** implement directory and filter based file processing with progress tracking ([b819649](https://github.com/myinusa/filename-suggestion-ai/commit/b819649317b2bc6569aad8b85f9872a5719c8bbc))
+* **poetry.lock:** add tqdm package for progress tracking functionality ([b819649](https://github.com/myinusa/filename-suggestion-ai/commit/b819649317b2bc6569aad8b85f9872a5719c8bbc))
+* **pyproject.toml:** include tqdm in project dependencies for progress tracking ([b819649](https://github.com/myinusa/filename-suggestion-ai/commit/b819649317b2bc6569aad8b85f9872a5719c8bbc))
+
 ## [1.2.0](https://github.com/myinusa/filename-suggestion-ai/compare/v1.1.0...v1.2.0) (2024-08-31)
 
 
