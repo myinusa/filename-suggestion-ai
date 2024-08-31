@@ -12,6 +12,7 @@ ruff = "^0.6.3"
 pytest = "^8.3.2"
 isort = "^5.13.2"
 vulture = "^2.11"
+tqdm = "^4.66.5"
 
 [tool.poetry.group.dev.dependencies]
 # Code quality tools

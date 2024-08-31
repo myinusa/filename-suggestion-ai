@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Optional
 
 import requests
+from tqdm import tqdm  # Import tqdm for progress tracking
 
 from filename_suggestion_ai.config import (
     HEADERS,
@@ -51,13 +52,33 @@ def main() -> None:
     args = get_parsed_args()
     initialize_application()
 
-    # Read file content
-    user_content = read_file_content(Path(args.file))
-    if user_content is None:
-        logging.error("Failed to read file content. Exiting.")
+    if args.directory:
+        directory_path = Path(args.directory)
+        if args.filter:
+            files = [
+                file_path
+                for file_path in directory_path.iterdir()
+                if file_path.is_file() and file_path.suffix == args.filter
+            ]
+        else:
+            files = [file_path for file_path in directory_path.iterdir() if file_path.is_file()]
+        logging.info(f"Total number of files in directory: {len(files)}")
+        for file_path in tqdm(files, desc="Processing files"):
+            process_file(file_path)
+    elif args.file:
+        file_path = Path(args.file)
+        process_file(file_path)
+    else:
+        logging.error("No file or directory specified. Exiting.")
         return
 
-    # Create and send payload
+
+def process_file(file_path: Path) -> None:
+    user_content = read_file_content(file_path)
+    if user_content is None:
+        logging.error(f"Failed to read file content from {file_path}. Skipping.")
+        return
+
     payload = create_payload(user_content)
     response = send_post_request(URL, HEADERS, payload)
     if response is None:
@@ -65,7 +86,7 @@ def main() -> None:
         return
     answer = response["choices"][0]["message"]["content"]
 
-    logging.info("Answer: %s", answer)
+    logging.info(f"Answer for {file_path}: {answer}")
 
 
 def send_post_request(url: str, headers: dict[str, str], payload: dict) -> LMStudioChatResponse | None:

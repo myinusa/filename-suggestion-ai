@@ -26,13 +26,26 @@ def get_parsed_args() -> argparse.Namespace:
         default=False,
         help="Activate debug logs. Default is False.",
     )
-    # New argument for file input
     g_misc.add_argument(
         "-f",
         "--file",
         dest="file",
-        required=True,
+        required=False,
         help="Path to the file whose content will be sent as user content in the payload.",
+    )
+    g_misc.add_argument(
+        "-dir",
+        "--directory",
+        dest="directory",
+        required=False,
+        help="Path to the directory containing files to process.",
+    )
+    g_misc.add_argument(
+        "-fil",
+        "--filter",
+        dest="filter",
+        required=False,
+        help="",
     )
 
     args = parser.parse_args()
