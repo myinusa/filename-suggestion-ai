@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "filename-suggestion-ai"
+name = "filename_suggestion_ai"
 version = "0.1.0"
 description = ""
 authors = ["Matthias <myinusa@hotmail.co.uk>"]
@@ -25,6 +25,9 @@ better-exceptions = "^0.3.3"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+# [tool.poetry.scripts]
+# filename_suggestion_ai = "filename_suggestion_ai.main:main"
 
 # --- black ------------------------------------------------------------------
 # ref: https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file
