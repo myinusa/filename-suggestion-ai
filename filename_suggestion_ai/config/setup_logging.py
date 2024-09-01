@@ -5,8 +5,6 @@ from pathlib import Path
 from rich.logging import RichHandler
 from rich.traceback import install as install_rich_traceback
 
-LOG_LEVEL = logging.INFO
-
 
 def setup_logging(log_file: Path, log_level: int = logging.INFO) -> None:
     """Sets up logging configuration."""

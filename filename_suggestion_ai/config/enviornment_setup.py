@@ -43,7 +43,7 @@ def initialize_application() -> None:
     elif args.verbose:
         log_level = logging.INFO
     else:
-        log_level = logging.WARNING
+        log_level = logging.INFO
 
     setup_logging(LOG_PATH, log_level)
     logging.debug("Initializing application...")
