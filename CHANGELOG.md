@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.0](https://github.com/myinusa/filename-suggestion-ai/compare/v1.3.0...v1.4.0) (2024-09-01)
+
+
+### Features
+
+* **filename_suggestion_ai/utils:** add APIClient class to handle API interactions ([5cdb9eb](https://github.com/myinusa/filename-suggestion-ai/commit/5cdb9eb92b4ad416112605574989f4e603900c38))
+* **main:** implement collection and logging of answers in main function ([0635eb0](https://github.com/myinusa/filename-suggestion-ai/commit/0635eb0d2e7624cfa06df943d1fb625dfc96e387))
+
+
+### Bug Fixes
+
+* **constants:** update model constant to new version ([0635eb0](https://github.com/myinusa/filename-suggestion-ai/commit/0635eb0d2e7624cfa06df943d1fb625dfc96e387))
+
 ## [1.3.0](https://github.com/myinusa/filename-suggestion-ai/compare/v1.2.0...v1.3.0) (2024-08-31)
 
 
