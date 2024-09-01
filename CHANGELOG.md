@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/myinusa/filename-suggestion-ai/compare/v1.4.0...v1.5.0) (2024-09-01)
+
+
+### Features
+
+* **modules/__init__.py:** add file_processor import to module initializer ([998f3c7](https://github.com/myinusa/filename-suggestion-ai/commit/998f3c7ac823a5813d5bd0d7334aa082857750bf))
+* **modules/file_processor.py:** create FileProcessor class to handle file processing logic ([998f3c7](https://github.com/myinusa/filename-suggestion-ai/commit/998f3c7ac823a5813d5bd0d7334aa082857750bf))
+
 ## [1.4.0](https://github.com/myinusa/filename-suggestion-ai/compare/v1.3.0...v1.4.0) (2024-09-01)
 
 
