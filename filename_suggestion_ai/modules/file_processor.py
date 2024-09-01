@@ -10,7 +10,7 @@ from filename_suggestion_ai.utils import APIClient, read_file_content
 
 
 class FileProcessor:
-    def __init__(self, directory: Path | None, file: Path | None, filter_ext: str):
+    def __init__(self, directory: Path | None, file: Path | None, filter_ext: str) -> None:
         self.directory = directory
         self.file = file
         self.filter_ext = filter_ext
@@ -54,6 +54,9 @@ class FileProcessor:
         return [(self.file.name, answer)]
 
     def _process_file(self, file_path: Path):
+        if file_path.stat().st_size > 100 * 1024:
+            logging.info(f"Skipping file {file_path} as it exceeds 100KB.")
+            return None
         content = read_file_content(file_path)
         if content is None:
             return None
