@@ -9,43 +9,11 @@ from tqdm import tqdm
 
 from filename_suggestion_ai.config import (
     HEADERS,
-    MODEL,
-    SYSTEM_CONTENT,
     URL,
     get_parsed_args,
     initialize_application,
 )
-from filename_suggestion_ai.models import LMStudioChatResponse
-from filename_suggestion_ai.utils import read_file_content
-
-
-def create_payload(user_content: str) -> dict:
-    """
-    Creates the payload for the POST request using the user content.
-
-    Args:
-        user_content (str): The content provided by the user.
-
-    Returns:
-        dict: The payload dictionary.
-    """
-    return {
-        "model": MODEL,
-        "messages": [
-            {
-                "role": "system",
-                "content": SYSTEM_CONTENT,
-            },
-            {
-                "role": "user",
-                "content": user_content,
-            },
-        ],
-        "temperature": 0.8,
-        "max_tokens": -1,
-        "seed": -1,
-        "stream": False,
-    }
+from filename_suggestion_ai.utils import APIClient, read_file_content
 
 
 def main() -> None:
@@ -87,41 +55,13 @@ def process_file(file_path: Path):
         logging.error(f"Failed to read file content from {file_path}. Skipping.")
         return None
 
-    payload = create_payload(user_content)
-    response = send_post_request(URL, HEADERS, payload)
+    client = APIClient(URL, HEADERS)
+    payload = client.create_payload(user_content)
+    response = client.send_post_request(payload)
     if response is None:
         logging.error("Failed to receive a valid response. Exiting.")
         return None
     return response["choices"][0]["message"]["content"]
-
-
-def send_post_request(url: str, headers: dict[str, str], payload: dict) -> LMStudioChatResponse | None:
-    """
-    Send a POST request to the specified URL with the given headers and payload.
-
-    Args:
-        url (str): The URL to which the POST request is sent.
-        headers (Dict[str, str]): HTTP headers for the request.
-        payload (Dict): The JSON payload for the POST request.
-
-    Returns:
-        Optional[ChatCompletionResponse]: The parsed chat completion response or None if an error occurs.
-    """
-    try:
-        logging.debug(f"Sending POST request to {url}")
-        response = requests.post(url, json=payload, headers=headers, timeout=60)
-        response.raise_for_status()  # Raises an HTTPError for bad responses
-        logging.debug("Successfully sent POST request. Status Code: %s", response.status_code)
-        logging.debug("Complete response")
-        return LMStudioChatResponse(**response.json())
-    except requests.exceptions.HTTPError:
-        logging.exception("HTTP error occurred")
-    except requests.exceptions.RequestException:
-        logging.exception("Error during requests to %s", url)
-    except Exception:
-        logging.exception("An unexpected error occurred")
-    return None
-
 
 if __name__ == "__main__":
     main()
