@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.0](https://github.com/myinusa/filename-suggestion-ai/compare/v1.5.0...v1.6.0) (2024-09-01)
+
+
+### Features
+
+* **api_client.py:** handle NOT_FOUND status code by logging and exiting ([15819b8](https://github.com/myinusa/filename-suggestion-ai/commit/15819b84fb596b8f6c45c19f6db3938f572a3165))
+* **file_processor.py:** add type hint to constructor in FileProcessor class ([15819b8](https://github.com/myinusa/filename-suggestion-ai/commit/15819b84fb596b8f6c45c19f6db3938f572a3165))
+* **file_processor.py:** skip processing files larger than 100KB ([15819b8](https://github.com/myinusa/filename-suggestion-ai/commit/15819b84fb596b8f6c45c19f6db3938f572a3165))
+
 ## [1.5.0](https://github.com/myinusa/filename-suggestion-ai/compare/v1.4.0...v1.5.0) (2024-09-01)
 
 
