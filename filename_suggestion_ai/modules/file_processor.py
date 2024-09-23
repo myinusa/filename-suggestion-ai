@@ -54,6 +54,9 @@ class FileProcessor:
         return [(self.file.name, answer)]
 
     def _process_file(self, file_path: Path):
+        # if file_path.suffix in {".toml", ""} or file_path.suffix.startswith("."):
+            # logging.info(f"Skipping file {file_path} due to unwanted extension.")
+            # return None
         if file_path.stat().st_size > 100 * 1024:
             logging.info(f"Skipping file {file_path} as it exceeds 100KB.")
             return None
