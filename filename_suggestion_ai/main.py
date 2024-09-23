@@ -9,7 +9,7 @@ from filename_suggestion_ai.config import (
 from filename_suggestion_ai.modules import FileProcessor
 
 
-def main():
+def main() -> None:
     args = get_parsed_args()
     initialize_application()
     processor = FileProcessor(

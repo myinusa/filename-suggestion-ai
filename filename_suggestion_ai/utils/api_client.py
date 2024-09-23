@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from http.client import NOT_FOUND
 import logging
 import sys
@@ -16,7 +18,7 @@ class APIClient:
         self.url = url
         self.headers = headers
 
-    def send_post_request(self, payload):
+    def send_post_request(self, payload) -> (LMStudioChatResponse | None):
         try:
             response = requests.post(self.url, json=payload, headers=self.headers, timeout=60)
             if response.status_code == NOT_FOUND:
