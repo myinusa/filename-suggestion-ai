@@ -2,11 +2,15 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from tqdm import tqdm
 
 from filename_suggestion_ai.config import HEADERS, URL
 from filename_suggestion_ai.utils import APIClient, read_file_content
+
+if TYPE_CHECKING:
+    from filename_suggestion_ai.models import LMStudioChatResponse
 
 
 class FileProcessor:
@@ -53,7 +57,7 @@ class FileProcessor:
             logging.info(f"Answer for {self.file}: {answer}")
         return [(self.file.name, answer)]
 
-    def _process_file(self, file_path: Path):
+    def _process_file(self, file_path: Path) -> LMStudioChatResponse | None:
         # if file_path.suffix in {".toml", ""} or file_path.suffix.startswith("."):
             # logging.info(f"Skipping file {file_path} due to unwanted extension.")
             # return None
